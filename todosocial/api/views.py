@@ -13,7 +13,7 @@ from api.models import *
 
 #####TODO#####
 class TodoList(ListCreateAPIView):
-	serializer_class = TodoSerializer
+	serializer_class = TodoSerializerCreate
 
 	#Listing all the todolists of a request user
 	def get_queryset(self):
@@ -22,6 +22,19 @@ class TodoList(ListCreateAPIView):
 			return Todo.objects.all()
 		else:
 			return Todo.objects.filter(owner = user)
+
+	def create(self, request, *args, **kwargs):
+		user = self.request.user
+		if user.is_superuser:
+			return super(TodoList, self).create(request, *args, **kwargs)
+		else:
+			#Making the request user be the owner of the created todo list so user
+			#does not have to pass the ownership field when creating
+			request.data._mutable = True
+			request.data['owner'] = user.id
+			request.data._mutable = False
+			return super(TodoList, self).create(request, *args, **kwargs)
+
 
 class TodoDetail(RetrieveUpdateDestroyAPIView):
 	serializer_class = TodoSerializer
@@ -64,7 +77,7 @@ class TodoDetail(RetrieveUpdateDestroyAPIView):
 
 #####TASK#####
 class TaskList(ListCreateAPIView):
-	serializer_class = TaskSerializer
+	serializer_class = TaskSerializerCreate
 
 	#Listing all the tasks of a request user
 	def get_queryset(self):
@@ -73,6 +86,19 @@ class TaskList(ListCreateAPIView):
 			return Task.objects.all()
 		else:
 			return Task.objects.filter(owner = user)
+
+	def create(self, request, *args, **kwargs):
+		user = self.request.user
+		if user.is_superuser:
+			return super(TaskList, self).create(request, *args, **kwargs)
+		else:
+			#Making the request user be the owner of the created task so user
+			#does not have to pass the ownership field when creating
+			request.data._mutable = True
+			request.data['owner'] = user.id
+			request.data._mutable = False
+
+			return super(TaskList, self).create(request, *args, **kwargs)
 
 class TaskDetail(RetrieveUpdateDestroyAPIView):
 	serializer_class = TaskSerializer
@@ -115,7 +141,7 @@ class TaskDetail(RetrieveUpdateDestroyAPIView):
 
 #####COMMENT#####
 class CommentList(ListCreateAPIView):
-	serializer_class = CommentSerializer
+	serializer_class = CommentSerializerCreate
 
 	#Listing all the comments of a request user
 	def get_queryset(self):
@@ -124,6 +150,18 @@ class CommentList(ListCreateAPIView):
 			return Comment.objects.all()
 		else:
 			return Comment.objects.filter(owner = user)
+
+	def create(self, request, *args, **kwargs):
+		user = self.request.user
+		if user.is_superuser:
+			return super(CommentList, self).create(request, *args, **kwargs)
+		else:
+			#Making the request user be the owner of the created task so user
+			#does not have to pass the ownership field when creating
+			request.data._mutable = True
+			request.data['owner'] = user.id
+			request.data._mutable = False
+			return super(CommentList, self).create(request, *args, **kwargs)
 
 class CommentDetail(RetrieveUpdateDestroyAPIView):
 	serializer_class = CommentSerializer
