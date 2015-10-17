@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      {% load staticfiles %}
+      <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body>
+        <div class="container">
+            <h3 class="center">Welcome <span>Name</span></h3>
+            <div class="divider grey lighten-5"></div>
+            <div class="section"></div>
+
+            <!-- TASK -->
+            <ul class="collapsible" data-collapsible="expandable">
+                <li>
+                    <div class="collapsible-header">
+                        <i class="material-icons">check</i>Task Name
+                        <div class="section"></div>
+                    </div>
+                    <div class="right col">
+                        <!-- EDIT TASK -->
+                        <a class="col btn-large waves-effect waves-light modal-trigger" href="#editTask">Edit
+                            <i class="material-icons right">mode_edit</i>
+                        </a>
+                        <!-- END EDIT TASK -->  
+                        <!-- DELETE TASK -->
+                        <button class="col red btn-large waves-effect waves-light">Delete
+                            <i class="material-icons right">delete</i>
+                        </button>
+                        <!-- END DELETE TASK -->
+                    </div>
+                    <div class="section"></div>
+                    <div class="section"></div>
+                    <!-- COMMENT -->
+                    <div class="collapsible-body">
+                        <div class="section"></div>
+                        <div class="container">
+                            <div class="row">
+                                <p class="col">Comment 1</p>
+                                <!-- DELETE COMMENT -->
+                                <button class="col red btn-large waves-effect waves-light right">Delete
+                                    <i class="material-icons right">delete</i>
+                                </button>
+                                <!-- END DELETE COMMENT -->
+                                <!-- EDIT COMMENT -->
+                                <button class="col btn-large waves-effect waves-light right">Edit
+                                    <i class="material-icons right">mode_edit</i>
+                                </button>
+                                <!-- END EDIT COMMENT -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END COMMENT -->
+                    <div class="section"></div>
+                    <!-- NEW COMMENT -->
+                    <div class="collapsible-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="textarea1" class="materialize-textarea" length="1000"></textarea>
+                                    <label for="textarea1">Write your comment</label>
+                                </div>
+                                <button class="btn-large waves-effect waves-light right">Save
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END NEW COMMENT -->
+                </li>
+            </ul>
+            <!-- END TASK -->
+
+        <!-- Modals -->
+        <div id="editTask" class="modal">
+            <div class="modal-content">
+                <h4>Task Editor</h4>
+                <p>A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-large">Agree</a>
+            </div>
+        </div>
+        </div>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+      <script type="text/javascript">
+        $(document).ready(function(){
+            $('.modal-trigger').leanModal();
+        });
+      </script>
+    </body>
+  </html>

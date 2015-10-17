@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      {% load staticfiles %}
+      <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body class="amber darken-1">
+        <!--Navbar-->
+        <div class="navbar-fixed">
+            <nav class="grey lighten-5">
+            <div class="nav-wrapper brand-logo center teal-text">TODO</a>
+            </div>
+            </nav>
+        </div>
+        <!--End Navbar-->
+        <div class="container">
+            <div class="section"></div>
+
+            <div class="row">
+                <div class="col offset-l3 s12 m6 center">
+                    <div class="card grey lighten-5 z-depth-3 center">
+                        <div class="card-content teal-text darken-1">
+                            <span class="card-title teal-text">Login</span>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="mdi-action-account-circle prefix"></i>
+                                    <input id="password" type="text" class="validate">
+                                    <label for="password">Username</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="mdi-communication-vpn-key prefix"></i>
+                                    <input id="email" type="password" class="validate">
+                                    <label for="email">Password</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-action center">
+                            <a class="waves-effect waves-light btn-large center z-depth-2 white-text">Login</a>
+                            <a class="waves-effect waves-light btn-large center z-depth-2 white-text"><i class="material-icons left">cloud</i>Facebook</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    </body>
+  </html>
